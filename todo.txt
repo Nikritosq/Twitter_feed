@@ -1,0 +1,26 @@
+1. users
+    -> register
+    -> login
+    -> logout
+    -> profile
+        -> Image
+        -> Name
+        -> Description
+        -> Edit
+        -> Follow(button)
+    -> feed
+        -> user's feed
+        -> following feed
+        -> global one
+2. Posts
+    -> Creating
+        ->Text
+        ->Image -> Media storage server
+    -> Delete
+    -> Reposting
+3. Following
+
+long term to Description
+-> Notification
+-> Direct Messages
+-> Explore (Search)

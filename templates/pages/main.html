@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div id="posts">
+    Loading...
+</div>
+
+<!--Need somehow set up postfrom here!!-->
+
+<script>
+    function handlePostCreateFormSubmited(event) {
+        event.preventDefault()
+        const PostCreForm = event.target
+        const PostCreFormData = new FormData(PostCreForm)
+        const url = PostCreForm.getAttribute("action")
+        const method = PostCreForm.getAttribute("method")
+        const xhr = new XMLHttpRequest()
+        xhr.open(method, url)
+        xhr.setRequestHeader("HTTP_X_REQUESTED_WITH", "XMLHttpRequest")
+        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest")
+        xhr.onload = function() {
+            const newPost = xhr.response
+            const postsEl = document.getElementById("posts")
+            loadPosts(postsEl)
+            /*if (xhr.status === 201) {
+                const newPost = xhr.response
+                const newPostJson = JSON.parse(newPost)
+                const newPostEl = formatOfPost(newPost)
+                console.log(newPostEl)
+            }*/
+        }
+        xhr.send(PostCreFormData)
+    }
+    
+    const postCreateFormEl = document.getElementById("post-create-form")
+    postCreateFormEl.addEventListener("submit", handlePostCreateFormSubmited)
+
+    const postsContainerEl = document.getElementById("posts")
+
+    function loadPosts(postsElement) {
+        const xhr = new XMLHttpRequest()
+        const method = 'GET'
+        const url = "/posts"
+        const responseType = "json"
+        xhr.responseType = responseType
+        xhr.open(method, url)
+        xhr.onload = function() {
+            const serverResponse = this.response
+            const listedItems = serverResponse.response //array
+            var endPostString = ""
+            var i;
+            for (i=0; i<listedItems.length; i++) {
+                var postObj = listedItems[i]
+                var currentItem = formatOfPost(postObj)
+                endPostString += currentItem
+            }
+            postsElement.innerHTML = endPostString
+        }
+        xhr.send()
+    }
+
+    loadPosts(postsContainerEl)
+
+    function handleLiked(post_id, currentCount) {
+        console.log(post_id, currentCount)
+        return
+    }
+
+    function handleReposted(post_id, currentCount) {
+        console.log(post_id, currentCount)
+        return
+    }
+
+    function LikeBtn(post) {
+        return '<button class="like_button" onclick=handleLiked(' + post.id + ',' + post.likes + ')>' + post.likes + ' &#10084;</button>'
+    }
+
+    function rePostBtn(post) {
+        return '<button class="repost_button" onclick=handleReposted(' + post.id + ',' + post.reposts + ')>' + post.reposts + ' &#10149;</button>'
+    }
+
+    function formatOfPost(post) {
+        var finalViewPost = '<div class="uh_eba" id="post-' + post.id +'">' + '<div class="post"><p>' + post.content + '</p></div>' +
+                '<div class="button_g">' +
+                LikeBtn(post) +
+                rePostBtn(post)
+                + '</div>'
+            + '</div>'
+        return finalViewPost
+    }
+</script>
+{% endblock content %}

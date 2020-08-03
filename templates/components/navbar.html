@@ -1,0 +1,25 @@
+<nav class="header_nav">
+    <div class="mpt">
+        <div class="logo"></div>
+    </div>
+    <div class="search"> <!--NEED to rework CSS-->
+        <form class="LookFor">
+            <input autocomplete="off" id="sb" name="q" placeholder="Search" value="">
+            <button type="submit"></button>
+            <script>
+                const searchBar = document.getElementById('sb');
+                console.log(searchBar);
+                searchBar.addEventListener('keyup', (w) => {
+                    console.log(w.target.value);
+                    //if (event.key === 'Enter') {
+                        //alert("currently i'm building API for Main and Gallery")
+                        //console.log("currently i'm building API for Main and Gallery");
+                    //} don't shows alert and messege in case type="submit"
+                });
+            </script>
+        </form>
+    </div>
+    <div class="mpt">
+        <div class="account"></div>
+    </div>
+</nav>

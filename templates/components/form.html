@@ -1,0 +1,14 @@
+<div class="zaebal_eta">
+    <form method="POST" id="post-create-form" action="/create-posts">
+        {% csrf_token %}
+        <input type="hidden" value="/" name="next"></input>
+        <textarea name="content" id="" class="form_r_input" placeholder="Your post"></textarea>
+        <div class="under_line">
+            <div class="options_to_p">
+                <div id="smiles"></div>
+                <div id="images"></div>
+            </div>
+            <button type="submit" class="submit_button">Post</button>
+        </div>
+    </form>
+</div>

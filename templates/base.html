@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <title>Twitter Clone</title>
+        {% load static %} <!--WARNING write this to call static files-->
+        <link rel="shortcut icon" href="{% static 'twitter_clone/images/posts.ico' %}?20200727" type="image/x-icon">
+        <meta name = "copyright" content = "NIKIN. All Rights Reserved." />
+		<meta name = "keywords" content = "Dezign, NIKIN, NiKiN, Portfolio"/>
+		<meta name = "robots" content = "no-index,no-follow"/>
+        <meta name = "author" content = "Mykyta Porozhniak"/>
+        <meta name = "description" content="Dezign">
+        <meta charset="utf-8">
+        <meta name = "viewport" content = "width=device-width, initial-scale=1">
+        <link rel = "stylesheet" href="{% static 'twitter_clone/style.css' %}?2020072719:14:47"/> <!--?parametr - updates automaticly url-cash-->
+        <!--WARNING follow thhis way to finish this shit: setting:'STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)'-->
+    </head>
+    <body>
+        {% include "components/navbar.html" %}
+        {% include "components/form.html" %}
+        <div class="column_test">
+            {% block content %}
+            {% endblock content %}
+        </div>
+        <!-- DRY -->
+    </body>
+</html>
